@@ -46,13 +46,8 @@ session_start();
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                <?php
-
-                                                    $p = mysqli_query($connect,"SELECT * FROM patient");
-
-                                                    $pp = mysqli_num_rows($p);
-                                                ?>
-                                                    <h5 class="text-white my-2" style = "font-size:30px;"><?php echo $pp; ?></h5>
+                                                
+                                                    <h5 class="text-white my-2" style = "font-size:30px;">0</h5>
                                                     <h5 class="text-white">Total</h5>
                                                     <h5 class="text-white ">Patient</h5>
                                                 </div>
@@ -67,13 +62,8 @@ session_start();
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                <?php
-
-                                                    $app = mysqli_query($connect,"SELECT * FROM appointment WHERE status='pending'");
-
-                                                    $appoint = mysqli_num_rows($app);
-                                                ?>
-                                                    <h5 class="text-white my-2" style = "font-size:30px;"><?php echo $appoint; ?></h5>
+                                                
+                                                    <h5 class="text-white my-2" style = "font-size:30px;">0</h5>
                                                     <h5 class="text-white">Total</h5>
                                                     <h5 class="text-white">Appointment</h5>
                                                 </div>

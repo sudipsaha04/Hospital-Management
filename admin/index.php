@@ -56,8 +56,13 @@ session_start();
                             <div class="col-md-12">
                                 <div class="row"> 
                                     <div class="col-md-8">
-                                         
-                                        <h5 class="my-2 text-white" style="font-size: 30px;">0</h5>
+                                    <?php
+
+                                    $doctor = mysqli_query($connect,"SELECT * FROM doctors WHERE status = 'Approved'");
+
+                                    $num2 = mysqli_num_rows($doctor);
+                                    ?>  
+                                        <h5 class="my-2 text-white" style="font-size: 30px;"><?php echo $num2; ?></h5>
                                         <h5 class="text-white">Total</h5>
                                         <h5 class="text-white">Doctors</h5>
                                     </div>
@@ -104,8 +109,14 @@ session_start();
                             <div class="col-md-12">
                                 <div class="row"> 
                                     <div class="col-md-8" >
-                                       
-                                        <h5 class="my-2 text-white" style="font-size: 30px;">0</h5>
+                                    <?php
+
+                                    $job = mysqli_query($connect,"SELECT * FROM doctors WHERE status = 'pending'");
+
+                                    $num1 = mysqli_num_rows($job);
+                                    ?>
+                                    <h5 class="my-2 text-white" style="font-size: 30px;"><?php echo $num1; ?></h5>
+                                        
                                         <h5 class="text-white">Total</h5>
                                         <h5 class="text-white">Job Request</h5>
                                     </div>
