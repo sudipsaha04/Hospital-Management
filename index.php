@@ -27,7 +27,7 @@ include("include/header.php");
                     <img src="img/patient.jpg" style="width: 100%;">
                     <h5 class="text-center">Create Account so that we can take good care of you.</h5>
 
-                    <a href="account.php">
+                    <a href="#">
                         <button class="btn btn-success my-3" style="margin-left: 30%;">
                         Create Account!!!</button>
                     </a>
