@@ -22,7 +22,7 @@ if(isset($_POST['login'])) {
 
         if(mysqli_num_rows($res)) {
 
-            header("#");
+            header("Location:patient/index.php");
 
             $_SESSION['patient'] = $uname;
         }else{
