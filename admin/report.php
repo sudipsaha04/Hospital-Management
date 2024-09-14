@@ -4,37 +4,50 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Total Report</title>
-    </head>
-    <body>
-        <?php
-        include("../include/header.php");
 
-        include("../include/connection.php");
-        ?>
+<head>
+    <title>Total Report</title>
+    <style>
+        body {
+            background-image: url('img/All.jpg');
+           
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+           
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
 
-        <div class ="container-fluid">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2" style = "margin-left : -30px;">
-                        <?php
-                        include("sidenav.php");
-                        ?>
-                    </div>
-                    <div class="col-md-10">
-                         <h5 class="text-center my-2">Total Report</h5>
-                        <?php
-                            $query ="SELECT * FROM report";
+<body>
+    <?php
+    include("../include/header.php");
 
-                            $res = mysqli_query($connect,$query);
+    include("../include/connection.php");
+    ?>
 
-                            $output = "";
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2" style="margin-left : -30px;">
+                    <?php
+                    include("sidenav.php");
+                    ?>
+                </div>
+                <div class="col-md-10">
+                    <h5 class="text-center my-2" style=" color: white;">Total Report</h5>
+                    <?php
+                    $query = "SELECT * FROM report";
+
+                    $res = mysqli_query($connect, $query);
+
+                    $output = "";
 
 
-                            $output .="
+                    $output .= "
 
-                                <table class='table table-bordered'>
+                                <table class='table table-bordered table-hover table-info table-striped'>
                                     <tr>
                                         <td>ID</td>
                                         <td>Title</td>
@@ -42,48 +55,49 @@ session_start();
                                         <td>Username</td>
                                         <td>Date Send</td>
                                     </tr>
-                                ";      
-                                
-                                if(mysqli_num_rows($res) <1) {
+                                ";
 
-                                    $output .= "
+                    if (mysqli_num_rows($res) < 1) {
+
+                        $output .= "
                                         <tr>
                                         <td colspan='6' class='text-center'>No patient</td>
                                         </tr>
                                                 
                                     
                                     ";
-                                }
+                    }
 
 
-                                while($row = mysqli_fetch_array($res)) {
+                    while ($row = mysqli_fetch_array($res)) {
 
-                                    $output .= "
+                        $output .= "
                                     
                                     <tr>
-                                    <td>".$row['id']."</td>
-                                    <td>".$row['title']."</td>
-                                    <td>".$row['message']."</td>
-                                    <td>".$row['username']."</td>
-                                    <td>".$row['date_send']."</td>
+                                    <td>" . $row['id'] . "</td>
+                                    <td>" . $row['title'] . "</td>
+                                    <td>" . $row['message'] . "</td>
+                                    <td>" . $row['username'] . "</td>
+                                    <td>" . $row['date_send'] . "</td>
                                  
                                     
                                     
                                     ";
-                                }
+                    }
 
-                                $output .="
+                    $output .= "
                                 </tr>
                                 </table>
                                     
                                 ";
 
-                                echo $output;
-                        ?>
-                    </div>
+                    echo $output;
+                    ?>
                 </div>
             </div>
         </div>
+    </div>
 
-    </body>
+</body>
+
 </html>

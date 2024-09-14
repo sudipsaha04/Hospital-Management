@@ -4,85 +4,101 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Book Appointment</title>
-    </head>
-    <body>
-        <?php
-        include("../include/header.php");
 
-        include("../include/connection.php");
-        ?>
+<head>
+    <title>Book Appointment</title>
+    <style>
+        body {
+            background-image: url('img/doctor1.jpg');
+         
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+           
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
 
-        <div class ="container-fluid">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2" style = "margin-left : -30px;">
-                        <?php
-                        include("sidenav.php");
-                        ?>
-                    </div>
-                    <div class="col-md-10">
-                         <h5 class="text-center my-2">Book Appointment</h5>
+<body>
+    <?php
+    include("../include/header.php");
 
-                         <?php
+    include("../include/connection.php");
+    ?>
 
-                            $pat = $_SESSION['patient'];
-                        
-                            $sel = mysqli_query($connect,"SELECT * FROM patient WHERE username='$pat'");
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2" style="margin-left : -30px;">
+                    <?php
+                    include("sidenav.php");
+                    ?>
+                </div>
+                <div class="col-md-10">
+                    <h5 class="text-center my-2" style=" color: white;">Book Appointment</h5>
 
-                            $row = mysqli_fetch_array($sel);
+                    <?php
 
-                            $firstname = $row['firstname'];
-                            $surname = $row['surname'];
-                            $gender = $row['gender'];
-                            $phone = $row['phone'];
+                    $pat = $_SESSION['patient'];
 
-                            if(isset($_POST['book'])) {
+                    $sel = mysqli_query($connect, "SELECT * FROM patient WHERE username='$pat'");
 
-                                $date = $_POST['date'];
-                                $sym = $_POST['sym'];
+                    $row = mysqli_fetch_array($sel);
 
-                                if(empty($sym)) {
+                    $firstname = $row['firstname'];
+                    $surname = $row['surname'];
+                    $gender = $row['gender'];
+                    $phone = $row['phone'];
 
-                                }else{
-                                    $query = "INSERT INTO appointment(firstname,surname,gender,phone,appointment_date,symptoms,status,date_booked) VALUES('$firstname','$surname','$gender','$phone','$date','$sym','pending',NOW())";
+                    if (isset($_POST['book'])) {
 
-                                    $res = mysqli_query($connect,$query);
+                        $date = $_POST['date'];
+                        $sym = $_POST['sym'];
 
-                                    if($res) {
-                                        echo "<script>alert('You have booked an appointment.')</script>";
-                                    }
-                                }
+                        if (empty($sym)) {
+
+                        } else {
+                            $query = "INSERT INTO appointment(firstname,surname,gender,phone,appointment_date,symptoms,status,date_booked) VALUES('$firstname','$surname','$gender','$phone','$date','$sym','pending',NOW())";
+
+                            $res = mysqli_query($connect, $query);
+
+                            if ($res) {
+                                echo "<script>alert('You have booked an appointment.')</script>";
                             }
+                        }
+                    }
 
-                        ?>
+                    ?>
 
-                        <div class="row justify-content-center">
-                            <div class="col-md-6">
-                                <div class="card text-white bg-dark">
-                                    <div class="card-body">
-                                        
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card text-white bg-dark">
+                                <div class="card-body">
 
-                                        <form method="post">
-                                            <label >Appointment Date</label>
-                                            <input type="date" name="date" class="form-control">
-            
-                                            <label >Symptoms</label>
-                                            <input type="text" name="sym" class="form-control" autocomplete="off" placeholder="Enter Symptoms">
 
-                                            <input type="submit" name="book" class="btn btn-info my-2" value="Book Appointment">
-                                        </form>
-                                    </div>
+                                    <form method="post">
+                                        <label>Appointment Date</label>
+                                        <input type="date" name="date" class="form-control">
+
+                                        <label>Symptoms</label>
+                                        <input type="text" name="sym" class="form-control" autocomplete="off"
+                                            placeholder="Enter Symptoms">
+
+                                        <input type="submit" name="book" class="btn btn-info my-2"
+                                            value="Book Appointment">
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
+    </div>
 
-    </body>
+</body>
+
 </html>
