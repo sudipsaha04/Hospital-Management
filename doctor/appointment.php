@@ -4,37 +4,50 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Total Appointment</title>
-    </head>
-    <body>
-        <?php
-        include("../include/header.php");
 
-        include("../include/connection.php");
-        ?>
+<head>
+    <title>Total Appointment</title>
+    <style>
+        body {
+            background-image: url('img/doctor1.jpg');
+           
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+           
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
 
-        <div class ="container-fluid">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-2" style = "margin-left : -30px;">
-                        <?php
-                        include("sidenav.php");
-                        ?>
-                    </div>
-                    <div class="col-md-10">
-                         <h5 class="text-center my-3">Total Appointment</h5>
-                        <?php
-                            $query ="SELECT * FROM appointment WHERE status='pending'";
+<body>
+    <?php
+    include("../include/header.php");
 
-                            $res = mysqli_query($connect,$query);
+    include("../include/connection.php");
+    ?>
 
-                            $output = "";
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2" style="margin-left : -30px;">
+                    <?php
+                    include("sidenav.php");
+                    ?>
+                </div>
+                <div class="col-md-10">
+                    <h5 class="text-center my-3" style=" color: white;">Total Appointment</h5>
+                    <?php
+                    $query = "SELECT * FROM appointment WHERE status='pending'";
+
+                    $res = mysqli_query($connect, $query);
+
+                    $output = "";
 
 
-                            $output .="
+                    $output .= "
 
-                                <table class='table table-bordered'>
+                                <table class='table table-bordered table-hover table-primary table-striped'>
                                     <tr>
                                         <td>ID</td>
                                         <td>Firstname</td>
@@ -47,35 +60,35 @@ session_start();
                                         <td>Action</td>
                                     
                                     </tr>
-                                ";      
-                                
-                                if(mysqli_num_rows($res) <1) {
+                                ";
 
-                                    $output .= "
+                    if (mysqli_num_rows($res) < 1) {
+
+                        $output .= "
                                         <tr>
                                         <td colspan='8' class='text-center'>No Appointment Yet</td>
                                         </tr>
                                                 
                                     
                                     ";
-                                }
+                    }
 
 
-                                while($row = mysqli_fetch_array($res)) {
+                    while ($row = mysqli_fetch_array($res)) {
 
-                                    $output .= "
+                        $output .= "
                                     
                                     <tr>
-                                    <td>".$row['id']."</td>
-                                    <td>".$row['firstname']."</td>
-                                    <td>".$row['surname']."</td>
-                                    <td>".$row['gender']."</td>
-                                    <td>".$row['phone']."</td>
-                                    <td>".$row['appointment_date']."</td>
-                                    <td>".$row['symptoms']."</td>        
-                                    <td>".$row['date_booked']."</td>
+                                    <td>" . $row['id'] . "</td>
+                                    <td>" . $row['firstname'] . "</td>
+                                    <td>" . $row['surname'] . "</td>
+                                    <td>" . $row['gender'] . "</td>
+                                    <td>" . $row['phone'] . "</td>
+                                    <td>" . $row['appointment_date'] . "</td>
+                                    <td>" . $row['symptoms'] . "</td>        
+                                    <td>" . $row['date_booked'] . "</td>
                                     <td>
-                                        <a href='discharge.php?id=".$row['id']."'>
+                                        <a href='discharge.php?id=" . $row['id'] . "'>
                                             <button class='btn btn-info'>Check</button>
                                         </a>
                                     
@@ -84,20 +97,21 @@ session_start();
                                     
                                     
                                     ";
-                                }
+                    }
 
-                                $output .="
+                    $output .= "
                                 </tr>
                                 </table>
                                     
                                 ";
 
-                                echo $output;
-                        ?>
-                    </div>
+                    echo $output;
+                    ?>
                 </div>
             </div>
         </div>
+    </div>
 
-    </body>
+</body>
+
 </html>

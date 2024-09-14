@@ -1,14 +1,17 @@
 <?php
-class user_credential {
+class user_credential
+{
     private $connect;
     private $patient;
 
-    public function __construct($connect, $patient) {
+    public function __construct($connect, $patient)
+    {
         $this->connect = $connect;
         $this->patient = $patient;
     }
 
-    public function updateUsername($uname) {
+    public function updateUsername($uname)
+    {
         if (!empty($uname)) {
             $query = "UPDATE patient SET username='$uname' WHERE username='$this->patient'";
             $res = mysqli_query($this->connect, $query);
@@ -18,7 +21,8 @@ class user_credential {
         }
     }
 
-    public function changePassword($oldPass, $newPass, $conPass) {
+    public function changePassword($oldPass, $newPass, $conPass)
+    {
         $query = "SELECT * FROM patient WHERE username = '$this->patient'";
         $res = mysqli_query($this->connect, $query);
         $row = mysqli_fetch_array($res);
