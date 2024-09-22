@@ -18,7 +18,6 @@
 
     <header>
 
-        
         <a href="index.php" class="logo"><span>H</span>ospital <span>M</span>anagement <span>s</span>ystem</a>
 
         <nav class="navbar">
